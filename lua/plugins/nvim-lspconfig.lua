@@ -34,7 +34,7 @@ return {
 
 		-- c/cpp--
 		vim.lsp.config("clangd", {
-			cmd = { "clangd" },
+			cmd = { "clangd19" },
 			init_options = {
 				fallbackFlags = { "-std=c++26" },
 			},
