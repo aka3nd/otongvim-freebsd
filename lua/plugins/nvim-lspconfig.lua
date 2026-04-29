@@ -51,8 +51,29 @@ return {
 			capabilities = capabilities,
 		})
 		vim.lsp.enable("lua_ls")
-
-		local opts = { noremap = true, silent = true }
+		--
+	--
+-- Di Neovim 0.11+
+vim.lsp.config("jdtls", {
+  cmd = {"/home/aka/bin/jdtls"},
+  filetypes = { "java" },
+  capabilities = capabilities, -- pastikan variabel ini terdefinisi
+  -- Tambahkan ini untuk workspace
+  root_markers = { "gradlew", "mvnw", ".git", "pom.xml", "build.gradle" },
+  init_options = {
+    workspace = "/home/aka/.cache/jdtls_workspace"
+  },
+  settings = {
+    java = {
+      home = "/usr/local/openjdk17", -- sesuaikan path Java 17 Anda
+      signatureHelp = { enabled = true },
+      completion = { favoriteStaticMembers = { "org.junit.Assert.*" } }
+    }
+  }
+})
+vim.lsp.enable("jdtls")
+		--
+	local opts = { noremap = true, silent = true }
 
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition", noremap = true, silent = true })
 		vim.keymap.set("n", "gb", "<C-o>", { desc = "Go back", noremap = true, silent = true })
