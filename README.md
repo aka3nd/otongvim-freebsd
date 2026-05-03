@@ -5,3 +5,4 @@ configure neovim untuk freeBSD
 ## depedencies install
 - clangd
 - llvm
+- stylua

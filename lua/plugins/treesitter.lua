@@ -5,6 +5,7 @@ return {
 		event = { "BufRead", "BufNewFile" },
 		version = false,
 		build = ":TSUpdate",
+		lazy = true,
 		cmd = {
 			"TSInstall",
 			"TSInstallSync",
