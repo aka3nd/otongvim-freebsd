@@ -5,21 +5,20 @@ return {
 		event = { "BufRead", "BufNewFile" },
 		version = false,
 		build = ":TSUpdate",
-		lazy = true,
 		cmd = {
 			"TSInstall",
 			"TSInstallSync",
 			"TSUpdate",
 			"TSUpdateSync",
 			"TSUninstall",
-			"TSUninstallInfo",
+			"TSInstallInfo",
 			"TSInstallFromGrammar",
 		},
 		opts = function()
 			return {
 				highlight = { enable = true },
 				indent = { enable = true },
-				ensure_installed = { "lua", "luadoc", "printf", "vim", "vimdoc" },
+				ensure_installed = { "lua", "luadoc", "vim", "vimdoc" },
 				incremental_selection = {
 					enable = true,
 				},
@@ -40,10 +39,11 @@ return {
 					return true
 				end, opts.ensure_installed)
 			end
-			require("nvim-treesitter.configs").setup(opts)
-			vim.api.nvim_create_user_command("TSInstallInfo", function()
-				vim.cmd("Telescope treesitter_info")
-			end, {})
+			local ok, treesitter = pcall(require, "nvim-treesitter.configs")
+			if not ok then
+				return
+			end
+			treesitter.setup(opts)
 		end,
 	},
 }
