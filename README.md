@@ -2,7 +2,9 @@
 
 configure neovim untuk freeBSD
 
-## depedencies install
+## depedencies to install on freeBSD
 - clangd
+- tree-sitter
 - llvm
 - stylua
+- cppcheck
