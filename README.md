@@ -8,3 +8,4 @@ configure neovim untuk freeBSD
 - llvm
 - stylua
 - cppcheck
+- tree-sitter-cli
