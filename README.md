@@ -9,3 +9,5 @@ configure neovim untuk freeBSD
 - stylua
 - cppcheck
 - tree-sitter-cli
+- nodejs
+- npm
