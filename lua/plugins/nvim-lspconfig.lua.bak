@@ -32,60 +32,48 @@ return {
 
 		vim.lsp.enable("rust_analyzer")
 
-		-- c/pp--
-		-- Untuk file C
-		vim.lsp.config("clangd-c", {
+		-- c/cpp--
+		vim.lsp.config("clangd", {
 			cmd = { "clangd19" },
 			init_options = {
-				fallbackFlags = { "-std=c17" },
+				--fallbackFlags = { "-std=c++26" },
 			},
-			filetypes = { "c" },
+			filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 			capabilities = capabilities,
 		})
-		vim.lsp.enable("clangd-c")
-
-		-- Untuk file C++
-		vim.lsp.config("clangd-cpp", {
-			cmd = { "clangd19" },
-			init_options = {
-				fallbackFlags = { "-std=c++26" },
-			},
-			filetypes = { "cpp", "cxx", "cc" },
-			capabilities = capabilities,
-		})
-		vim.lsp.enable("clangd-cpp")
+		vim.lsp.enable("clangd")
 
 		-- lua language --
 		vim.lsp.config("lua_ls", {
 			--cmd = { "/home/aka/lua-language-server/bin/lua-language-server" },
-			cmd = { "lua-language-server" },
+			cmd = {"lua-language-server"},
 			filetypes = { "lua" },
 			capabilities = capabilities,
 		})
 		vim.lsp.enable("lua_ls")
 		--
+	--
+-- Di Neovim 0.11+
+vim.lsp.config("jdtls", {
+  cmd = {"/home/aka/bin/jdtls"},
+  filetypes = { "java" },
+  capabilities = capabilities, -- pastikan variabel ini terdefinisi
+  -- Tambahkan ini untuk workspace
+  root_markers = { "gradlew", "mvnw", ".git", "pom.xml", "build.gradle" },
+  init_options = {
+    workspace = "/home/aka/.cache/jdtls_workspace"
+  },
+  settings = {
+    java = {
+      home = "/usr/local/openjdk17", -- sesuaikan path Java 17 Anda
+      signatureHelp = { enabled = true },
+      completion = { favoriteStaticMembers = { "org.junit.Assert.*" } }
+    }
+  }
+})
+vim.lsp.enable("jdtls")
 		--
-		-- Di Neovim 0.11+
-		vim.lsp.config("jdtls", {
-			cmd = { "/home/aka/bin/jdtls" },
-			filetypes = { "java" },
-			capabilities = capabilities, -- pastikan variabel ini terdefinisi
-			-- Tambahkan ini untuk workspace
-			root_markers = { "gradlew", "mvnw", ".git", "pom.xml", "build.gradle" },
-			init_options = {
-				workspace = "/home/aka/.cache/jdtls_workspace",
-			},
-			settings = {
-				java = {
-					home = "/usr/local/openjdk17", -- sesuaikan path Java 17 Anda
-					signatureHelp = { enabled = true },
-					completion = { favoriteStaticMembers = { "org.junit.Assert.*" } },
-				},
-			},
-		})
-		vim.lsp.enable("jdtls")
-		--
-		local opts = { noremap = true, silent = true }
+	local opts = { noremap = true, silent = true }
 
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition", noremap = true, silent = true })
 		vim.keymap.set("n", "gb", "<C-o>", { desc = "Go back", noremap = true, silent = true })
