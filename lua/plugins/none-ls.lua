@@ -16,6 +16,7 @@ return {
 					null_ls.builtins.formatting.clang_format.with({
 						filetypes = { "c", "cpp", "cs", "java", "cuda", "proto" },
 						command = "clang-format19",
+						extra_args = {},
 					}),
 
 					--linter
