@@ -141,7 +141,7 @@ return {
 			desc = "Code Action",
 		})
 
-		vim.keymap.set("n", "<leader>f", function()
+		vim.keymap.set("n", "<leader>ff", function()
 			vim.lsp.buf.format({
 				async = true,
 			})
