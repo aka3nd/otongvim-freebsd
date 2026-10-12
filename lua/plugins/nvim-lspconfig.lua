@@ -3,7 +3,7 @@ return {
 	lazy = false,
 
 	config = function()
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		-- Bash
 		vim.lsp.config("bashls", {
@@ -43,11 +43,11 @@ return {
 
 		-- C
 		vim.lsp.config("clangd-c", {
-			cmd = { "clangd19" },
+			cmd = { "clangd22" },
 			filetypes = { "c" },
 
 			init_options = {
-				fallbackFlags = { "-std=c17" },
+				fallbackFlags = { "-std=c23" },
 			},
 
 			capabilities = capabilities,
@@ -57,7 +57,7 @@ return {
 
 		-- C++
 		vim.lsp.config("clangd-cpp", {
-			cmd = { "clangd19" },
+			cmd = { "clangd22" },
 			filetypes = { "cpp", "cxx", "cc" },
 
 			init_options = {
