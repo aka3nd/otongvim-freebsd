@@ -16,7 +16,7 @@ return {
 
 		-- Rust
 		vim.lsp.config("rust_analyzer", {
-			cmd = { "/usr/local/bin/rust-analyzer" },
+			cmd = { "/home/aka/.cargo/bin/rust-analyzer" },
 			filetypes = { "rust" },
 
 			settings = {
@@ -61,7 +61,7 @@ return {
 			filetypes = { "cpp", "cxx", "cc" },
 
 			init_options = {
-				fallbackFlags = { "-std=c++26" },
+				fallbackFlags = { "-std=c++23" },
 			},
 
 			capabilities = capabilities,
